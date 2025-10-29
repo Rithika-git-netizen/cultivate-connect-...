@@ -55,7 +55,11 @@ const Contact = () => {
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
                   <h3 className="font-bold">Email Us</h3>
-                  <p className="text-sm text-muted-foreground">support@cultivateconnect.in</p>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">abhintr13@gmail.com</p>
+                    <p className="text-sm text-muted-foreground">rithikarekhadevi@gmail.com</p>
+                    <p className="text-sm text-muted-foreground">amirrasheed2529@gmail.com</p>
+                  </div>
                 </CardContent>
               </Card>
 
@@ -65,7 +69,12 @@ const Contact = () => {
                     <Phone className="w-6 h-6 text-accent" />
                   </div>
                   <h3 className="font-bold">Call Us</h3>
-                  <p className="text-sm text-muted-foreground">+91 1800-XXX-XXXX</p>
+                  <div className="space-y-1">
+                    <p className="text-sm text-muted-foreground">+91 7013753816</p>
+                    <p className="text-sm text-muted-foreground">+91 8951258016</p>
+                    <p className="text-sm text-muted-foreground">+91 9738897539</p>
+                    <p className="text-sm text-muted-foreground">+91 8088927021</p>
+                  </div>
                 </CardContent>
               </Card>
 

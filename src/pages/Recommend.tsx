@@ -11,24 +11,16 @@ interface RecommendationData {
   score: number;
   timestamp: string;
   inputs: {
-    n: number;
-    p: number;
-    k: number;
     temp: number;
     humidity: number;
-    ph: number;
     rainfall: number;
   };
 }
 
 const Recommend = () => {
   const [formData, setFormData] = useState({
-    nitrogen: "",
-    phosphorus: "",
-    potassium: "",
     temperature: "",
     humidity: "",
-    ph: "",
     rainfall: "",
   });
 
@@ -48,12 +40,8 @@ const Recommend = () => {
       score: parseFloat(randomScore),
       timestamp: new Date().toLocaleString(),
       inputs: {
-        n: parseFloat(formData.nitrogen),
-        p: parseFloat(formData.phosphorus),
-        k: parseFloat(formData.potassium),
         temp: parseFloat(formData.temperature),
         humidity: parseFloat(formData.humidity),
-        ph: parseFloat(formData.ph),
         rainfall: parseFloat(formData.rainfall),
       },
     };
@@ -76,57 +64,14 @@ const Recommend = () => {
           <div className="lg:col-span-2 space-y-6">
             <Card className="border-2">
               <CardHeader className="bg-gradient-to-r from-primary/10 to-accent/10">
-                <CardTitle className="text-3xl font-bold">Enter Soil & Weather Data</CardTitle>
+                <CardTitle className="text-3xl font-bold">Enter Weather Data</CardTitle>
               </CardHeader>
               <CardContent className="pt-6">
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Soil Nutrients */}
+                  {/* Weather Conditions */}
                   <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-primary">Soil Nutrients</h3>
+                    <h3 className="text-lg font-semibold text-primary">Weather Conditions</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="nitrogen">Nitrogen (N)</Label>
-                        <Input
-                          id="nitrogen"
-                          type="number"
-                          min="0"
-                          required
-                          value={formData.nitrogen}
-                          onChange={(e) => handleInputChange("nitrogen", e.target.value)}
-                          className="border-2"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="phosphorus">Phosphorus (P)</Label>
-                        <Input
-                          id="phosphorus"
-                          type="number"
-                          min="0"
-                          required
-                          value={formData.phosphorus}
-                          onChange={(e) => handleInputChange("phosphorus", e.target.value)}
-                          className="border-2"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="potassium">Potassium (K)</Label>
-                        <Input
-                          id="potassium"
-                          type="number"
-                          min="0"
-                          required
-                          value={formData.potassium}
-                          onChange={(e) => handleInputChange("potassium", e.target.value)}
-                          className="border-2"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Atmospheric Conditions */}
-                  <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-secondary">Atmospheric Conditions</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="temperature">Temperature (°C)</Label>
                         <Input
@@ -148,20 +93,6 @@ const Recommend = () => {
                           required
                           value={formData.humidity}
                           onChange={(e) => handleInputChange("humidity", e.target.value)}
-                          className="border-2"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="ph">Soil pH</Label>
-                        <Input
-                          id="ph"
-                          type="number"
-                          min="0"
-                          max="14"
-                          step="0.1"
-                          required
-                          value={formData.ph}
-                          onChange={(e) => handleInputChange("ph", e.target.value)}
                           className="border-2"
                         />
                       </div>

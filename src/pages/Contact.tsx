@@ -59,6 +59,7 @@ const Contact = () => {
                     <p className="text-sm text-muted-foreground">abhintr13@gmail.com</p>
                     <p className="text-sm text-muted-foreground">rithikarekhadevi@gmail.com</p>
                     <p className="text-sm text-muted-foreground">amirrasheed2529@gmail.com</p>
+                    <p className="text-sm text-muted-foreground">khushiskrishna21@gmail.com</p>
                   </div>
                 </CardContent>
               </Card>

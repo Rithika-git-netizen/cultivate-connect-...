@@ -5,12 +5,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface RecommendationData {
   crop: string;
   score: number;
   timestamp: string;
   inputs: {
+    soilType: string;
     temp: number;
     humidity: number;
     rainfall: number;
@@ -19,6 +21,7 @@ interface RecommendationData {
 
 const Recommend = () => {
   const [formData, setFormData] = useState({
+    soilType: "",
     temperature: "",
     humidity: "",
     rainfall: "",
@@ -40,6 +43,7 @@ const Recommend = () => {
       score: parseFloat(randomScore),
       timestamp: new Date().toLocaleString(),
       inputs: {
+        soilType: formData.soilType,
         temp: parseFloat(formData.temperature),
         humidity: parseFloat(formData.humidity),
         rainfall: parseFloat(formData.rainfall),
@@ -68,9 +72,34 @@ const Recommend = () => {
               </CardHeader>
               <CardContent className="pt-6">
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Soil Type */}
+                  <div className="space-y-4">
+                    <h3 className="text-lg font-semibold text-primary">Soil Information</h3>
+                    <div className="space-y-2">
+                      <Label htmlFor="soilType">Soil Type</Label>
+                      <Select
+                        value={formData.soilType}
+                        onValueChange={(value) => handleInputChange("soilType", value)}
+                        required
+                      >
+                        <SelectTrigger className="border-2">
+                          <SelectValue placeholder="Select soil type" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="sandy">Sandy</SelectItem>
+                          <SelectItem value="loamy">Loamy</SelectItem>
+                          <SelectItem value="clay">Clay</SelectItem>
+                          <SelectItem value="silt">Silt</SelectItem>
+                          <SelectItem value="peaty">Peaty</SelectItem>
+                          <SelectItem value="chalky">Chalky</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+
                   {/* Weather Conditions */}
                   <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-primary">Weather Conditions</h3>
+                    <h3 className="text-lg font-semibold text-secondary">Weather Conditions</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="temperature">Temperature (°C)</Label>

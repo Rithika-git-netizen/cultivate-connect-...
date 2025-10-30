@@ -75,15 +75,14 @@ const Recommend = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Main Form Column */}
           <div className="lg:col-span-2 space-y-6">
+            {/* Soil Data Card */}
             <Card className="border-2">
               <CardHeader className="bg-gradient-to-r from-primary/10 to-accent/10">
-                <CardTitle className="text-3xl font-bold">Crop Recommendation</CardTitle>
+                <CardTitle className="text-3xl font-bold">Enter Your Soil Data</CardTitle>
               </CardHeader>
               <CardContent className="pt-6">
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Soil Type */}
                   <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-primary">Soil Information</h3>
                     <div className="space-y-2">
                       <Label htmlFor="soilType">Soil Type</Label>
                       <Select
@@ -148,10 +147,18 @@ const Recommend = () => {
                       </div>
                     </div>
                   </div>
+                </form>
+              </CardContent>
+            </Card>
 
-                  {/* Weather Data */}
+            {/* Weather Data Card */}
+            <Card className="border-2">
+              <CardHeader className="bg-gradient-to-r from-secondary/10 to-primary/10">
+                <CardTitle className="text-3xl font-bold">Enter Your Weather Data</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-secondary">Weather Data</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="temperature">Temperature (°C)</Label>

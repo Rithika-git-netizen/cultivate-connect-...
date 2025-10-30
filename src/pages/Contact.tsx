@@ -86,7 +86,7 @@ const Contact = () => {
                   </div>
                   <h3 className="font-bold">Visit Us</h3>
                   <p className="text-sm text-muted-foreground">
-                    Agricultural Innovation Hub<br />New Delhi, India
+                    Agricultural Innovation Hub KSSEM College Bangalore, India
                   </p>
                 </CardContent>
               </Card>

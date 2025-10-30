@@ -77,7 +77,7 @@ const Recommend = () => {
           <div className="lg:col-span-2 space-y-6">
             <Card className="border-2">
               <CardHeader className="bg-gradient-to-r from-primary/10 to-accent/10">
-                <CardTitle className="text-3xl font-bold">Enter Weather Data</CardTitle>
+                <CardTitle className="text-3xl font-bold">Crop Recommendation</CardTitle>
               </CardHeader>
               <CardContent className="pt-6">
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -149,9 +149,9 @@ const Recommend = () => {
                     </div>
                   </div>
 
-                  {/* Weather Conditions */}
+                  {/* Weather Data */}
                   <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-secondary">Weather Conditions</h3>
+                    <h3 className="text-lg font-semibold text-secondary">Weather Data</h3>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="temperature">Temperature (°C)</Label>

@@ -154,7 +154,7 @@ const Recommend = () => {
             {/* Weather Data Card */}
             <Card className="border-2">
               <CardHeader className="bg-gradient-to-r from-secondary/10 to-primary/10">
-                <CardTitle className="text-3xl font-bold">Enter Your Weather Data</CardTitle>
+                <CardTitle className="text-3xl font-bold">Enter Weather Data</CardTitle>
               </CardHeader>
               <CardContent className="pt-6">
                 <form onSubmit={handleSubmit} className="space-y-6">

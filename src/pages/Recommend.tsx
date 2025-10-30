@@ -13,6 +13,9 @@ interface RecommendationData {
   timestamp: string;
   inputs: {
     soilType: string;
+    nitrogen: number;
+    phosphorus: number;
+    potassium: number;
     temp: number;
     humidity: number;
     rainfall: number;
@@ -22,6 +25,9 @@ interface RecommendationData {
 const Recommend = () => {
   const [formData, setFormData] = useState({
     soilType: "",
+    nitrogen: "",
+    phosphorus: "",
+    potassium: "",
     temperature: "",
     humidity: "",
     rainfall: "",
@@ -44,6 +50,9 @@ const Recommend = () => {
       timestamp: new Date().toLocaleString(),
       inputs: {
         soilType: formData.soilType,
+        nitrogen: parseFloat(formData.nitrogen),
+        phosphorus: parseFloat(formData.phosphorus),
+        potassium: parseFloat(formData.potassium),
         temp: parseFloat(formData.temperature),
         humidity: parseFloat(formData.humidity),
         rainfall: parseFloat(formData.rainfall),
@@ -94,6 +103,49 @@ const Recommend = () => {
                           <SelectItem value="chalky">Chalky</SelectItem>
                         </SelectContent>
                       </Select>
+                    </div>
+                    
+                    {/* Soil Nutrients */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                      <div className="space-y-2">
+                        <Label htmlFor="nitrogen">Nitrogen (N)</Label>
+                        <Input
+                          id="nitrogen"
+                          type="number"
+                          min="0"
+                          required
+                          value={formData.nitrogen}
+                          onChange={(e) => handleInputChange("nitrogen", e.target.value)}
+                          className="border-2"
+                          placeholder="0-100"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="phosphorus">Phosphorus (P)</Label>
+                        <Input
+                          id="phosphorus"
+                          type="number"
+                          min="0"
+                          required
+                          value={formData.phosphorus}
+                          onChange={(e) => handleInputChange("phosphorus", e.target.value)}
+                          className="border-2"
+                          placeholder="0-100"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="potassium">Potassium (K)</Label>
+                        <Input
+                          id="potassium"
+                          type="number"
+                          min="0"
+                          required
+                          value={formData.potassium}
+                          onChange={(e) => handleInputChange("potassium", e.target.value)}
+                          className="border-2"
+                          placeholder="0-100"
+                        />
+                      </div>
                     </div>
                   </div>
 

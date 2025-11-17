@@ -95,24 +95,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="container py-20">
-        <Card className="bg-gradient-to-r from-primary/10 via-accent/10 to-secondary/10 border-2">
-          <CardContent className="py-16 text-center space-y-6">
-            <h2 className="text-3xl md:text-5xl font-bold">
-              Ready to Transform Your Farm?
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Start making data-driven decisions today and watch your harvest flourish
-            </p>
-            <Link to="/recommend">
-              <Button size="lg" className="text-lg px-8 h-14 mt-4">
-                Start Now →
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-      </section>
     </div>
   );
 };

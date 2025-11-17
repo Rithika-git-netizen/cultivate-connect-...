@@ -40,7 +40,7 @@ const Recommend = () => {
 
   // ★★★ THIS IS YOUR NEW, UPGRADED FUNCTION ★★★
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+    e.preventDefault();
 
     // 1. Get the "order" from the form
     const inputs = {
@@ -58,10 +58,11 @@ const Recommend = () => {
     const API_ENDPOINT_URL = "https://lemonlike-wilhemina-unacrimoniously.ngrok-free.dev/recommend";
 
     try {
-    const response = await fetch(API_ENDPOINT_URL,{
       // Show a loading message
       setRecommendation(null); // Clear old results
       alert("Sending data to the 'Kitchen'... Please wait.");
+
+      const response = await fetch(API_ENDPOINT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(inputs),
@@ -215,7 +216,7 @@ const Recommend = () => {
                           max="100"
                           required
                           value={formData.humidity}
-                          onChange={(e) => handleInputChange("humidity", e.g.target.value)}
+                          onChange={(e) => handleInputChange("humidity", e.target.value)}
                           className="border-2"
                         />
                       </div>
@@ -253,7 +254,7 @@ const Recommend = () => {
                   </div>
                 </CardContent>
               </Card>
-            )}
+            </Body>
           </div>
 
           {/* History Column */}

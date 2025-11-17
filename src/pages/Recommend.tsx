@@ -254,7 +254,7 @@ const Recommend = () => {
                   </div>
                 </CardContent>
               </Card>
-            </Body>
+            )}
           </div>
 
           {/* History Column */}

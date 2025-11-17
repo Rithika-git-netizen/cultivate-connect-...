@@ -40,7 +40,7 @@ const Recommend = () => {
 
   // ★★★ THIS IS YOUR NEW, UPGRADED FUNCTION ★★★
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
     // 1. Get the "order" from the form
     const inputs = {
@@ -55,14 +55,13 @@ const Recommend = () => {
 
     // 2. Send the "order" to your NEW Google Colab "Kitchen"
     // ★★★ YOUR URL IS PASTED HERE! ★★★
-    const API_ENDPOINT_URL = "https://lemonlike-wilhemina-unacrimoniously.ngrok-free.dev";
+    const API_ENDPOINT_URL = "https://lemonlike-wilhemina-unacrimoniously.ngrok-free.dev/recommend";
 
     try {
+    const response = await fetch(API_ENDPOINT_URL,{
       // Show a loading message
       setRecommendation(null); // Clear old results
       alert("Sending data to the 'Kitchen'... Please wait.");
-
-      const response = await fetch(API_ENDPOINT_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(inputs),

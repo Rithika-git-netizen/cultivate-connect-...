@@ -12,7 +12,7 @@ interface RecommendationData {
   score: number;
   timestamp: string;
   inputs: {
-    soilType: string;
+    ph: number;
     nitrogen: number;
     phosphorus: number;
     potassium: number;
@@ -24,7 +24,7 @@ interface RecommendationData {
 
 const Recommend = () => {
   const [formData, setFormData] = useState({
-    soilType: "",
+    ph: "",
     nitrogen: "",
     phosphorus: "",
     potassium: "",
@@ -49,7 +49,7 @@ const Recommend = () => {
       score: parseFloat(randomScore),
       timestamp: new Date().toLocaleString(),
       inputs: {
-        soilType: formData.soilType,
+        ph: parseFloat(formData.ph),
         nitrogen: parseFloat(formData.nitrogen),
         phosphorus: parseFloat(formData.phosphorus),
         potassium: parseFloat(formData.potassium),
@@ -84,24 +84,20 @@ const Recommend = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-4">
                     <div className="space-y-2">
-                      <Label htmlFor="soilType">Soil Type</Label>
-                      <Select
-                        value={formData.soilType}
-                        onValueChange={(value) => handleInputChange("soilType", value)}
+                      <Label htmlFor="ph">Soil pH Level</Label>
+                      <Input
+                        id="ph"
+                        type="number"
+                        step="0.1"
+                        min="0"
+                        max="14"
+                        placeholder="e.g., 6.5"
+                        value={formData.ph}
+                        onChange={(e) => handleInputChange("ph", e.target.value)}
+                        className="border-2"
                         required
-                      >
-                        <SelectTrigger className="border-2">
-                          <SelectValue placeholder="Select soil type" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="sandy">Sandy</SelectItem>
-                          <SelectItem value="loamy">Loamy</SelectItem>
-                          <SelectItem value="clay">Clay</SelectItem>
-                          <SelectItem value="silt">Silt</SelectItem>
-                          <SelectItem value="peaty">Peaty</SelectItem>
-                          <SelectItem value="chalky">Chalky</SelectItem>
-                        </SelectContent>
-                      </Select>
+                      />
+                      <p className="text-xs text-muted-foreground">Enter pH value between 0-14 (neutral: 7)</p>
                     </div>
                     
                     {/* Soil Nutrients */}

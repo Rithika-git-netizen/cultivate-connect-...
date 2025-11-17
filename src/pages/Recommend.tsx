@@ -1,3 +1,5 @@
+// ▼▼▼ PASTE THIS ENTIRE CODE INTO YOUR BLANK 'Recommend.tsx' FILE ▼▼▼
+
 import { useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,7 +18,7 @@ interface RecommendationData {
     nitrogen: number;
     phosphorus: number;
     potassium: number;
-    temp: number;
+    temp: number; // This one is 'temp'
     humidity: number;
     rainfall: number;
   };
@@ -28,7 +30,7 @@ const Recommend = () => {
     nitrogen: "",
     phosphorus: "",
     potassium: "",
-    temperature: "",
+    temperature: "", // This one is 'temperature'
     humidity: "",
     rainfall: "",
   });
@@ -36,52 +38,92 @@ const Recommend = () => {
   const [recommendation, setRecommendation] = useState<RecommendationData | null>(null);
   const [history, setHistory] = useState<RecommendationData[]>([]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // ★★★ THIS IS YOUR NEW, UPGRADED FUNCTION ★★★
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Mock recommendation logic
-    const crops = ["Rice", "Wheat", "Cotton", "Sugarcane", "Maize", "Pulses", "Tea", "Coffee"];
-    const randomCrop = crops[Math.floor(Math.random() * crops.length)];
-    const randomScore = (Math.random() * 30 + 70).toFixed(1);
 
-    const newRecommendation: RecommendationData = {
-      crop: randomCrop,
-      score: parseFloat(randomScore),
-      timestamp: new Date().toLocaleString(),
-      inputs: {
-        ph: parseFloat(formData.ph),
-        nitrogen: parseFloat(formData.nitrogen),
-        phosphorus: parseFloat(formData.phosphorus),
-        potassium: parseFloat(formData.potassium),
-        temp: parseFloat(formData.temperature),
-        humidity: parseFloat(formData.humidity),
-        rainfall: parseFloat(formData.rainfall),
-      },
+    // 1. Get the "order" from the form
+    const inputs = {
+      ph: parseFloat(formData.ph),
+      nitrogen: parseFloat(formData.nitrogen),
+      phosphorus: parseFloat(formData.phosphorus),
+      potassium: parseFloat(formData.potassium),
+      temperature: parseFloat(formData.temperature), // Reads from the form
+      humidity: parseFloat(formData.humidity),
+      rainfall: parseFloat(formData.rainfall),
     };
 
-    setRecommendation(newRecommendation);
-    setHistory([newRecommendation, ...history]);
+    // 2. Send the "order" to your NEW Google Colab "Kitchen"
+    // ★★★ YOUR URL IS PASTED HERE! ★★★
+    const API_ENDPOINT_URL = "https://lemonlike-wilhemina-unacrimoniously.ngrok-free.dev";
+
+    try {
+      // Show a loading message
+      setRecommendation(null); // Clear old results
+      alert("Sending data to the 'Kitchen'... Please wait.");
+
+      const response = await fetch(API_ENDPOINT_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(inputs),
+      });
+
+      const result = await response.json(); // Get the answer, e.g., { crop: "Rice", score: 95.0 }
+
+      if (result.error) {
+        throw new Error(result.error);
+      }
+      
+      // 3. Create the new recommendation
+      const newRecommendation: RecommendationData = {
+        crop: result.crop,
+        score: result.score,
+        timestamp: new Date().toLocaleString(),
+        inputs: { // ★★★ I fixed the 'temp' vs 'temperature' bug here ★★★
+          ph: inputs.ph,
+          nitrogen: inputs.nitrogen,
+          phosphorus: inputs.phosphorus,
+          potassium: inputs.potassium,
+          temp: inputs.temperature, // This matches your interface
+          humidity: inputs.humidity,
+          rainfall: inputs.rainfall,
+        },
+      };
+
+      // 4. Update your page (same as before!)
+      setRecommendation(newRecommendation);
+      setHistory([newRecommendation, ...history]);
+
+    } catch (error) {
+      console.error("Error calling the 'Kitchen' (API):", error);
+      alert("Sorry, something went wrong with the recommendation. Check the console for errors.");
+    }
   };
+  // ★★★ END OF YOUR NEW FUNCTION ★★★
+
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
+  // ★★★ I ALSO FIXED YOUR FORM HTML - YOUR OLD ONE HAD TWO <form> TAGS ★★★
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
       <Navigation />
       
       <div className="container py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* The <form> tag now wraps BOTH cards and the button */}
+        <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
           {/* Main Form Column */}
           <div className="lg:col-span-2 space-y-6">
+            
             {/* Soil Data Card */}
             <Card className="border-2">
               <CardHeader className="bg-gradient-to-r from-primary/10 to-accent/10">
                 <CardTitle className="text-3xl font-bold">Enter Your Soil Data</CardTitle>
               </CardHeader>
               <CardContent className="pt-6">
-                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="ph">Soil pH Level</Label>
@@ -143,7 +185,6 @@ const Recommend = () => {
                       </div>
                     </div>
                   </div>
-                </form>
               </CardContent>
             </Card>
 
@@ -153,7 +194,6 @@ const Recommend = () => {
                 <CardTitle className="text-3xl font-bold">Enter Weather Data</CardTitle>
               </CardHeader>
               <CardContent className="pt-6">
-                <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="space-y-2">
@@ -176,7 +216,7 @@ const Recommend = () => {
                           max="100"
                           required
                           value={formData.humidity}
-                          onChange={(e) => handleInputChange("humidity", e.target.value)}
+                          onChange={(e) => handleInputChange("humidity", e.g.target.value)}
                           className="border-2"
                         />
                       </div>
@@ -195,10 +235,9 @@ const Recommend = () => {
                     </div>
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full text-lg h-14">
+                  <Button type="submit" size="lg" className="w-full text-lg h-14 mt-6">
                     Get Crop Recommendation
                   </Button>
-                </form>
               </CardContent>
             </Card>
 
@@ -247,7 +286,8 @@ const Recommend = () => {
               </CardContent>
             </Card>
           </div>
-        </div>
+          
+        </form> {/* The </form> tag now ends here, wrapping everything */}
       </div>
     </div>
   );

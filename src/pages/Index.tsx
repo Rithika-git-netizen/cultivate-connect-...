@@ -69,7 +69,9 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-accent/10 relative overflow-hidden">
+      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      <div className="relative z-10">
       {/* Hero Header */}
       <div className="bg-primary/10 border-b border-primary/20 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-4 py-8 md:py-12">
@@ -303,6 +305,7 @@ const Index = () => {
             </Card>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

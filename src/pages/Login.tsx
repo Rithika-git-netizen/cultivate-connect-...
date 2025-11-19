@@ -23,8 +23,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
-      <Navigation />
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-accent/10 relative overflow-hidden">
+      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      <div className="relative z-10">
+        <Navigation />
       
       <div className="container py-16 flex items-center justify-center min-h-[calc(100vh-4rem)]">
         <Card className="w-full max-w-md border-2">
@@ -132,6 +134,7 @@ const Login = () => {
             </Tabs>
           </CardContent>
         </Card>
+      </div>
       </div>
     </div>
   );

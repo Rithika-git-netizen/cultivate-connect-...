@@ -4,8 +4,10 @@ import { Target, Heart, Lightbulb, Globe } from "lucide-react";
 
 const About = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
-      <Navigation />
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-accent/10 relative overflow-hidden">
+      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      <div className="relative z-10">
+        <Navigation />
       
       <div className="container py-16 space-y-16">
         {/* Hero Section */}
@@ -129,6 +131,7 @@ const About = () => {
             </CardContent>
           </Card>
         </section>
+      </div>
       </div>
     </div>
   );

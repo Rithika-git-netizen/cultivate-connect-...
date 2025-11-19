@@ -6,8 +6,10 @@ import { Sprout, Users, TrendingUp, Leaf } from "lucide-react";
 
 const Home = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/30">
-      <Navigation />
+    <div className="min-h-screen bg-gradient-to-br from-background via-muted/20 to-accent/10 relative overflow-hidden">
+      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      <div className="relative z-10">
+        <Navigation />
       
       {/* Hero Section */}
       <section className="container py-20 md:py-32">
@@ -94,7 +96,7 @@ const Home = () => {
           </Card>
         </div>
       </section>
-
+      </div>
     </div>
   );
 };
